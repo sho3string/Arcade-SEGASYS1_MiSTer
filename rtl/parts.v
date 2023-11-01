@@ -1,6 +1,6 @@
 // Copyright (c) 2017,19 MiSTer-X
 
-module DLROM #(parameter AW,parameter DW)
+module DLROM #(parameter AW=0,parameter DW=0)
 (
 	input							CL0,
 	input [(AW-1):0]			AD0,
@@ -223,7 +223,7 @@ module LineBuf
 	output reg [10:0]	rdat1
 );
 
-reg [10:0] ram[1024];
+reg [10:0] ram[0:1023];
 
 always @(posedge clkr) begin
 	if(clre) begin

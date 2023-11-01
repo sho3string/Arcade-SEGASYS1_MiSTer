@@ -433,6 +433,7 @@ begin
 					Z16_r <= '0';
 				end if;
 
+
 				if MCycle  = "001" and TState(2) = '0' then
 				-- MCycle = 1 and TState = 1, 2, or 3
 
@@ -608,7 +609,7 @@ begin
 						F(Flag_N) <= DI_Reg(7);
 						F(Flag_C) <= ioq(8);
 						F(Flag_H) <= ioq(8);
-						ioq := (ioq and x"7") xor ('0'&BusA);
+						ioq := (ioq and "000000111") xor ('0'&BusA);
 						F(Flag_P) <= not (ioq(0) xor ioq(1) xor ioq(2) xor ioq(3) xor ioq(4) xor ioq(5) xor ioq(6) xor ioq(7));
 					end if;
 

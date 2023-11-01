@@ -3,7 +3,7 @@
 
 											Copyright (c) 2017,19 MiSTer-X
 *********************************************************************/
-module SEGASYSTEM1
+module segasystem1
 (
 	input				clk48M,
 	input				reset,

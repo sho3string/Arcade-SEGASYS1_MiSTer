@@ -29,7 +29,7 @@ module SEGASYS1_MAIN
 	
 	output reg [7:0] VIDMD,
 
-	input				ROMCL,		// Downloaded ROM image
+	input			ROMCL,		// Downloaded ROM image
 	input   [24:0]	ROMAD,
 	input	  [7:0]	ROMDT,
 	input				ROMEN,
@@ -112,20 +112,20 @@ wire			cpu_cs_mram = (CPUAD[15:12] == 4'b1100) & cpu_mreq;
 	input		  [7:0]	in
 */
 
-dpram #(.aWidth(12),.dWidth(8))
-mainram(
-	.clk_a(CLK48M),
-	.addr_a(CPUAD[11:0]),
-	.we_a(cpu_cs_mram & CPUWR),
-	.d_a(CPUDO),
+//dpram #(.aWidth(12),.dWidth(8)) mainram(
+
+dualport_2clk_ram #(.FALLING_A(1),.ADDR_WIDTH(12),.DATA_WIDTH(8)) mainram(
+	.clock_a(CLK48M),
+	.address_a(CPUAD[11:0]),
+	.wren_a(cpu_cs_mram & CPUWR),
+	.data_a(CPUDO),
 	.q_a(cpu_rd_mram),
 
-	.clk_b(CLK48M),
-	.addr_b(HSAD[11:0]),
-	.we_b(HSWE),
-	.d_b(HSDI),
+	.clock_b(CLK48M),
+	.address_b(HSAD[11:0]),
+	.wren_b(HSWE),
+	.data_b(HSDI),
 	.q_b(HSDO)
-
 );
 
 // Video mode latch & Sound Request
