@@ -2,7 +2,7 @@
 
 `define EN_SPRITE (ROMAD[17:16]==2'b01)				// $10000-$1FFFF
 
-`define EN_TILE00	(ROMAD[17:13]==5'b10_000)			// $20000-$21FFF
+`define EN_TILE00 (ROMAD[17:13]==5'b10_000)	        // $20000-$21FFF
 `define EN_TILE01 (ROMAD[17:13]==5'b10_001)			// $22000-$23FFF
 `define EN_TILE02 (ROMAD[17:13]==5'b10_010)			// $24000-$25FFF
 `define EN_TILE10 (ROMAD[17:13]==5'b10_011)			// $26000-$27FFF
@@ -451,7 +451,7 @@ module VIDADEC
 	output		 cpu_rd
 );
 
-assign cpu_cs_palram		 = (cpu_ad[15:11] == 5'b1101_1   );
+assign cpu_cs_palram	 = (cpu_ad[15:11] == 5'b1101_1   );
 assign cpu_cs_spram		 = (cpu_ad[15:11] == 5'b1101_0   );
 assign cpu_cs_mixcoll    = (cpu_ad[15:10] == 6'b1111_00  );
 wire	 cpu_cs_mixcollclr = (cpu_ad[15:10] == 6'b1111_01  );

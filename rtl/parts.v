@@ -15,7 +15,7 @@ module DLROM #(parameter AW=0,parameter DW=0)
 reg [(DW-1):0] core[0:((2**AW)-1)];
 
 always @(posedge CL0) DO0 <= core[AD0];
-always @(posedge CL1) if (WE1) core[AD1] <= DI1;
+always @(negedge CL1) if (WE1) core[AD1] <= DI1;
 
 endmodule
 

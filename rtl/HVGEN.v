@@ -1,6 +1,6 @@
 // Copyright (c) 2019 MiSTer-X
 
-module HVGEN
+module hvgen
 (
 	output  [8:0]		HPOS,
 	output  [8:0]		VPOS,

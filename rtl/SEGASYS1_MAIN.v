@@ -93,9 +93,9 @@ wire  [7:0] rdt;
 
 SEGASYS1_PRGDEC decr(AXSCL,cpu_m1,CPUAD,cpu_rd_mrom0, rad,rdt, ROMCL,ROMAD,ROMDT,ROMEN);
 
-DLROM #(15,8) rom0(CLK48M, nocrypt ? CPUAD : rad, rdt, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPU0);	// ($0000-$7FFF encrypted)
-DLROM #(14,8) rom1(CLK48M, CPUAD,        cpu_rd_mrom1, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPU8);	// ($8000-$BFFF non-encrypted)
-DLROM #(15,8) romd(CLK48M, CPUAD,        cpu_rd_mromd, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPUD);	// ($0000-$7FFF non-encrypted data)
+DLROM #(15,8) rom0(CLK48M, nocrypt ? CPUAD : rad, rdt, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPU0); // ($0000-$7FFF encrypted)          
+DLROM #(14,8) rom1(CLK48M, CPUAD,        cpu_rd_mrom1, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPU8); // ($8000-$BFFF non-encrypted)     
+DLROM #(15,8) romd(CLK48M, CPUAD,        cpu_rd_mromd, ROMCL,ROMAD,ROMDT,ROMEN & `EN_MCPUD); // ($0000-$7FFF non-encrypted data) 
 
 reg nocrypt = 0;
 always @(posedge CLK48M) if(ROMEN & `EN_MCPUD) nocrypt <= 1;
@@ -114,7 +114,7 @@ wire			cpu_cs_mram = (CPUAD[15:12] == 4'b1100) & cpu_mreq;
 
 //dpram #(.aWidth(12),.dWidth(8)) mainram(
 
-dualport_2clk_ram #(.FALLING_A(1),.ADDR_WIDTH(12),.DATA_WIDTH(8)) mainram(
+dualport_2clk_ram #(.ADDR_WIDTH(12),.DATA_WIDTH(8)) mainram(
 	.clock_a(CLK48M),
 	.address_a(CPUAD[11:0]),
 	.wren_a(cpu_cs_mram & CPUWR),
